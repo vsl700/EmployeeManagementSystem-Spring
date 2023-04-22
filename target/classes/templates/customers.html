@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/styles/customer-styles.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title>Employees</title>
+</head>
+<body>
+    <div class="wrapper">
+		<h1>Employee Management System</h1>
+		<a class="add-employee-btn btn btn-primary" href="/customers/addEmployee" role="button">Add new employee</a>
+    	<table class="employees-table table table-striped">
+	        <thead>
+	            <tr>
+	                <th><a th:href="@{/customers/{page}?sort=name (page=${page})}">Name</a></th>
+					<th><a th:href="@{/customers/{page}?sort=date (page=${page})}">Employment Date</a></th>
+	                <th>Achievements</th>
+	                <th>Actions</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="employee:${empList}">
+	                <td th:text="${employee.firstName}+' '+${employee.lastName}"></td>
+					<td th:text="${employee.employmentDate}"></td>
+	                <td align="center">-</td>
+	                <td><a class="btn btn-primary" th:href="@{/customers/updateEmployee/{id}(id=${employee.id})}" role="button">Edit</a> / <a class="btn btn-danger" th:href="@{/customers/deleteEmployee/{id}(id=${employee.id})}" role="button">Delete</a></td>
+	            </tr>
+	        </tbody>
+    	</table>
+
+		<div class="wrapper">
+			<a th:each="i:${#numbers.sequence(1, pages)}" th:text="${i}" th:href="@{/customers/{page}(page=${i})}" class="page-btn btn btn-primary"></a>
+		</div>
+    </div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>
