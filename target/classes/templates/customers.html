@@ -32,7 +32,7 @@
     	</table>
 
 		<div class="wrapper">
-			<a th:each="i:${#numbers.sequence(1, pages)}" th:text="${i}" th:href="@{/customers/{page}(page=${i})}" class="page-btn btn btn-primary"></a>
+			<a th:each="i:${#numbers.sequence(1, pages)}" th:text="${i}" th:href="@{/customers/{page}(page=${i})}" th:class="'page-btn'+' btn'+' btn-dark'+${page == i ? ' active' : ''}" class="page-btn btn btn-primary"></a>
 		</div>
     </div>
 
